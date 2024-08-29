@@ -1,8 +1,15 @@
 import { useState } from "react";
 
-function PizzaBlock({ name, price }) {
+function PizzaBlock({ title, price, imageUrl, types, sizes }) {
 
     const [buttonPizzaAdd, setButtonPizzaAdd] = useState(0);
+    const [pizzaSizeIndex, setPizzaSizeIndex] = useState(0);
+    const [pizzasTypeIndex, setPizzasTypeIndex] = useState(0);
+
+    const pizzasTypesNames = [
+        'тонкое',
+        'традиционное',
+    ];
 
     const increasePizzaButton = () => {
         setButtonPizzaAdd(
@@ -14,19 +21,36 @@ function PizzaBlock({ name, price }) {
         <div class="pizza-block">
             <img
                 class="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                src={imageUrl}
                 alt="Pizza"
             />
-            <h4 class="pizza-block__title">{name}</h4>
+            <h4 class="pizza-block__title">{title}</h4>
             <div class="pizza-block__selector">
                 <ul>
-                    <li class="active">тонкое</li>
-                    <li>традиционное</li>
+                    {
+                        types.map((type, i) => (
+                            <li
+                                key={i}
+                                className={pizzasTypeIndex === i ? 'active' : ''}
+                                onClick={() => setPizzasTypeIndex(i)}
+                                >
+                                {pizzasTypesNames[type]}
+                            </li>
+                        ))
+                    }
                 </ul>
                 <ul>
-                    <li class="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {
+                        sizes.map((size, i) => (
+                            <li
+                                key={i}
+                                className={pizzaSizeIndex === i ? 'active' : ''}
+                                onClick={() => setPizzaSizeIndex(i)}
+                            >
+                                {size} см.
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
             <div class="pizza-block__bottom">
