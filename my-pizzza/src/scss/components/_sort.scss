@@ -3,8 +3,10 @@
 .sort {
   position: relative;
   &__label {
+    min-width: 260px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     svg {
       margin-right: 8px;
