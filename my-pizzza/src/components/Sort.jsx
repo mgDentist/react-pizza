@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function Sort () {
+function Sort() {
 
     const sortListTitles = [
-            'популярности',
-            'цене',
-            'алфавиту',
+        'популярности',
+        'цене',
+        'алфавиту',
     ];
 
     const [popUpItemIndex, setPopUpItemIndex] = useState(0)
@@ -37,15 +37,21 @@ function Sort () {
                 <span>{sortListTitle}</span>
             </div>
             {
-                popUpOpen && ( 
+                popUpOpen && (
                     <div className="sort__popup">
                         <ul>
                             {sortListTitles.map((sortListTitle, i) => (
-                                <li key={i} onClick={() => selectItemTitle(i)} className={popUpItemIndex === i ? 'active' : ''}>{sortListTitle}</li>                
-                ))}
+                                <li
+                                    key={i}
+                                    onClick={() => selectItemTitle(i)}
+                                    className={popUpItemIndex === i ? 'active' : ''}
+                                >
+                                    {sortListTitle}
+                                </li>
+                            ))}
                         </ul>
                     </div>
-            )}
+                )}
         </div>
     );
 };
