@@ -52,14 +52,6 @@ function App() {
                   />
                 ))
             }
-            {/* {
-              pizzasList.map((pizzaObj, i) => (
-                <PizzaBlock
-                  className="pizza-block"
-                  key={pizzaObj.id}
-                  {...pizzaObj} />
-              ))
-            } */}
           </div>
         </div>
       </div>
