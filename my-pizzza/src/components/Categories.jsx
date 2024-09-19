@@ -5,6 +5,7 @@ function Categories() {
     const [pizzaActiveIndex, setPizzaActiveIndex] = React.useState(0);
 
     const pizzasTypes = [
+        'Все',
         'Мясные',
         'Вегетарианская',
         'Гриль',

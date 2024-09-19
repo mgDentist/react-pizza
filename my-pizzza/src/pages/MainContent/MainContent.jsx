@@ -1,8 +1,9 @@
-import Categories from './Categories';
-import Sort from './Sort';
-import PizzaBlock from './PizzaBlock/PizzaBlock';
-import SkeletonPizzas from './PizzaBlock/SkeletonPizzas';
 import { useEffect, useState } from 'react';
+
+import Categories from '../../components/Categories';
+import Sort from '../../components/Sort';
+import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
+import SkeletonPizzas from '../../components/PizzaBlock/SkeletonPizzas';
 
 const MainContent = () => {
     const URLPizzas = 'https://66df19f5de4426916ee39224.mockapi.io/pizzas';
