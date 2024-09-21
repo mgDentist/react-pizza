@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import pizzaLogo from '../assets/img/pizza-logo.svg';
+import pizzaLogo from '../assets/img/pizzaLogo.svg';
 import Search from '../components/Search/Search';
 
 function Header() {
