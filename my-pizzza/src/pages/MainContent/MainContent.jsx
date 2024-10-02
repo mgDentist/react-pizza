@@ -14,6 +14,8 @@ const MainContent = () => {
 
     const skeletonFakeArray = [...new Array(10)];
 
+    const [pizzaActiveIndex, setPizzaActiveIndex] = useState(0);
+
     useEffect(() => {
         fetch(URLPizzas)
             .then((res) => res.json())
@@ -26,7 +28,9 @@ const MainContent = () => {
     return (
         <>
             <div className="content__top">
-                <Categories />
+                <Categories
+                    PizzaActiveIndex={pizzaActiveIndex}
+                    onClickCategory={(i) => (setPizzaActiveIndex(i))} />
                 <Sort />
             </div>
             <h2 className="content__title">Все пиццы</h2>
