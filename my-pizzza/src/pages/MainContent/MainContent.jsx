@@ -14,7 +14,7 @@ const MainContent = () => {
     const skeletonFakeArray = [...new Array(10)];
 
     const [categoryId, setPizzaActiveIndex] = useState(0);
-    const [sortItemIndex, setSortItemIndex] = useState({ name: 'популярности', sortType: 'rating' });
+    const [sortItemIndex, setSortItemIndex] = useState({ name: 'рейтингу', sortType: 'rating' });
 
     const order = sortItemIndex.sortType.includes('-') ? 'asc' : 'desc';
     const sortBy = sortItemIndex.sortType.replace('-', '');

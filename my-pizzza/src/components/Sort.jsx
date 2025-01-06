@@ -3,12 +3,12 @@ import { useState } from "react";
 function Sort({ SortItemIndex, onClickSortItems }) {
 
     const sortListTitles = [
-        { name: 'популярности (DESC)', sortType: 'rating' },
-        { name: 'популярности (ASC)', sortType: '-rating' },
+        { name: 'рейтингу (DESC)', sortType: 'rating' },
+        { name: 'рейтингу (ASC)', sortType: '-rating' },
         { name: 'цене (DESC)', sortType: 'price' },
         { name: 'цене (ASC)', sortType: '-price' },
-        { name: 'алфавиту (DESC)', sortType: 'name' },
-        { name: 'алфавиту (ASC)', sortType: '-name' },
+        { name: 'названию (DESC)', sortType: 'name' },
+        { name: 'названию (ASC)', sortType: '-name' },
     ];
 
     const [popUpOpen, setPopUpOpen] = useState(false);
