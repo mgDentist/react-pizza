@@ -1,11 +1,15 @@
 import styles from './Search.module.scss';
+import svgClose from '../../assets/img/close.svg';
 
-const Search = () => {
+const Search = ({ inputValue, setInputValue }) => {
     return (
         <div className={styles.searchContainer}>
             <input
+                value={inputValue}
+                onChange={e => setInputValue(e.target.value)}
                 className={styles.input}
-                placeholder='Ищу пиццку...'></input>
+                placeholder='Ищу пиццку...' />
+
             <svg
                 className={styles.icon}
                 xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 512 512" width="24">
@@ -13,6 +17,13 @@ const Search = () => {
                 <path d="M221.09,64A157.09,157.09,0,1,0,378.18,221.09,157.1,157.1,0,0,0,221.09,64Z" fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="32" />
                 <line fill="none" stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="32" x1="338.29" x2="448" y1="338.29" y2="448" />
             </svg>
+
+            {inputValue && <button
+                className={styles.closeBtn}
+                onClick={() => setInputValue('')}
+                type='button' aria-label='Очистить поле ввода'>
+                <img src={svgClose} alt='' />
+            </button>}
         </div>
     );
 };

@@ -5,7 +5,7 @@ import Sort from '../../components/Sort';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import SkeletonPizzas from '../../components/PizzaBlock/SkeletonPizzas';
 
-const MainContent = () => {
+const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
 
     const [pizzasList, setPizzasList] = useState([]);
 
@@ -13,14 +13,15 @@ const MainContent = () => {
 
     const skeletonFakeArray = [...new Array(10)];
 
-    const [categoryId, setPizzaActiveIndex] = useState(0);
+    // const [categoryId, setPizzaActiveIndex] = useState(0);
     const [sortItemIndex, setSortItemIndex] = useState({ name: 'рейтингу', sortType: 'rating' });
 
     const order = sortItemIndex.sortType.includes('-') ? 'asc' : 'desc';
     const sortBy = sortItemIndex.sortType.replace('-', '');
     const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const search = inputValue ? `&search=${inputValue}` : '';
 
-    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?${category}&sortBy=${sortBy}&order=${order}`;
+    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?${category}&sortBy=${sortBy}&order=${order}&${search}`;
 
     useEffect(() => {
         setIsLoading(true);

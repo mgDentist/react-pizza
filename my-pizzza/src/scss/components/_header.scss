@@ -7,7 +7,7 @@
   .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 50px;
   }
 
   &__logo {
@@ -28,5 +28,9 @@
     p {
       color: #7b7b7b;
     }
+  }
+
+  &__cart {
+    margin-left: auto;
   }
 }
