@@ -6,7 +6,6 @@ import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import SkeletonPizzas from '../../components/PizzaBlock/SkeletonPizzas';
 
 const MainContent = () => {
-    const URLPizzas = 'https://66df19f5de4426916ee39224.mockapi.io/pizzas';
 
     const [pizzasList, setPizzasList] = useState([]);
 
@@ -14,24 +13,34 @@ const MainContent = () => {
 
     const skeletonFakeArray = [...new Array(10)];
 
-    const [pizzaActiveIndex, setPizzaActiveIndex] = useState(0);
+    const [categoryId, setPizzaActiveIndex] = useState(0);
+    const [sortItemIndex, setSortItemIndex] = useState({ name: 'популярности', sortType: 'rating' });
+
+    const order = sortItemIndex.sortType.includes('-') ? 'asc' : 'desc';
+    const sortBy = sortItemIndex.sortType.replace('-', '');
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+
+    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?${category}&sortBy=${sortBy}&order=${order}`;
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(URLPizzas)
             .then((res) => res.json())
             .then((pizzasArr) => {
                 setPizzasList(pizzasArr);
                 setIsLoading(false);
             });
-    }, []);
+    }, [sortItemIndex, categoryId, URLPizzas]);
 
     return (
         <>
             <div className="content__top">
                 <Categories
-                    PizzaActiveIndex={pizzaActiveIndex}
+                    PizzaActiveIndex={categoryId}
                     onClickCategory={(i) => (setPizzaActiveIndex(i))} />
-                <Sort />
+                <Sort
+                    SortItemIndex={sortItemIndex}
+                    onClickSortItems={(i) => (setSortItemIndex(i))} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">

@@ -2,8 +2,6 @@ import React from 'react';
 
 function Categories({ PizzaActiveIndex, onClickCategory }) {
 
-    // const [pizzaActiveIndex, setPizzaActiveIndex] = React.useState(0);
-
     const pizzasTypes = [
         'Все',
         'Мясные',
@@ -12,10 +10,6 @@ function Categories({ PizzaActiveIndex, onClickCategory }) {
         'Острые',
         'Закрытые',
     ];
-
-    // const onClickPizzaCategory = (index) => {
-    //     setPizzaActiveIndex(index);
-    // };
 
     return (
         <div className="categories">

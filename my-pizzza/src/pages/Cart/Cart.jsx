@@ -1,6 +1,6 @@
 const Cart = () => {
     return (
-        <h2>Empty</h2>
+<h2>пусто пока :(</h2>
     );
 };
 
