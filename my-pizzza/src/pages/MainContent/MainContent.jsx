@@ -4,34 +4,36 @@ import Categories from '../../components/Categories';
 import Sort from '../../components/Sort';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import SkeletonPizzas from '../../components/PizzaBlock/SkeletonPizzas';
+import PaginationBlock from '../../components/Pagination/PaginationBlock';
 
 const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
 
     const [pizzasList, setPizzasList] = useState([]);
-
     const [isLoading, setIsLoading] = useState(true);
+    const [sortItemIndex, setSortItemIndex] = useState({ name: 'рейтингу', sortType: 'rating' });
+    const [pageNumber, setPageNumber] = useState(1);
 
     const skeletonFakeArray = [...new Array(10)];
-
-    // const [categoryId, setPizzaActiveIndex] = useState(0);
-    const [sortItemIndex, setSortItemIndex] = useState({ name: 'рейтингу', sortType: 'rating' });
 
     const order = sortItemIndex.sortType.includes('-') ? 'asc' : 'desc';
     const sortBy = sortItemIndex.sortType.replace('-', '');
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = inputValue ? `&search=${inputValue}` : '';
 
-    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?${category}&sortBy=${sortBy}&order=${order}&${search}`;
+    const LIMIT_PAGE = 4;
+
+    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?page=${pageNumber}&limit=${LIMIT_PAGE}&${category}&sortBy=${sortBy}&order=${order}${search}`;
 
     useEffect(() => {
         setIsLoading(true);
         fetch(URLPizzas)
             .then((res) => res.json())
             .then((pizzasArr) => {
+                console.log('hui', pizzasArr)
                 setPizzasList(pizzasArr);
                 setIsLoading(false);
             });
-    }, [sortItemIndex, categoryId, URLPizzas]);
+    }, [sortItemIndex, categoryId, inputValue, pageNumber ,URLPizzas]);
 
     return (
         <>
@@ -63,6 +65,7 @@ const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
                         ))
                 }
             </div>
+            <PaginationBlock onChangePage={(number) => setPageNumber(number)}/>
         </>
     )
 };

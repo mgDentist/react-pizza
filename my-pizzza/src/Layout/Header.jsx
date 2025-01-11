@@ -13,7 +13,7 @@ function Header({ inputValue, setInputValue, categoryId }) {
                             <h1>React Pizza</h1>
                             <p>самая вкусная пицца во вселенной
                                 <br></br>
-                                <p>(по версии моей мамы)</p>
+                                (по версии моей мамы)
                             </p>
                         </div>
                     </div>
