@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { AppContext } from '../../App';
+
 import styles from './Search.module.scss';
 import svgClose from '../../assets/img/close.svg';
 
-const Search = ({ inputValue, setInputValue }) => {
+const Search = () => {
+    const { inputValue, setInputValue } = useContext(AppContext);
+
     return (
         <div className={styles.searchContainer}>
             <input

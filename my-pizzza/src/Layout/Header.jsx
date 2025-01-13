@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom';
 import pizzaLogo from '../assets/img/pizzaLogo.svg';
 import Search from '../components/Search/Search';
 
-function Header({ inputValue, setInputValue, categoryId }) {
+import { AppContext } from '../App';
+import { useContext } from 'react';
+
+function Header() {
+    const { categoryId } = useContext(AppContext);
+
     return (
         <div className="header">
             <div className="container">
@@ -19,7 +24,7 @@ function Header({ inputValue, setInputValue, categoryId }) {
                     </div>
                 </Link>
 
-                {!categoryId && <Search inputValue={inputValue} setInputValue={setInputValue} />}
+                {!categoryId && <Search />}
 
                 <div className="header__cart">
                     <Link to="/cart" className="button button--cart">

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AppContext } from '../../App';
 
 import Categories from '../../components/Categories';
 import Sort from '../../components/Sort';
@@ -6,12 +7,13 @@ import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import SkeletonPizzas from '../../components/PizzaBlock/SkeletonPizzas';
 import PaginationBlock from '../../components/Pagination/PaginationBlock';
 
-const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
-
+const MainContent = () => {
     const [pizzasList, setPizzasList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortItemIndex, setSortItemIndex] = useState({ name: 'рейтингу', sortType: 'rating' });
     const [pageNumber, setPageNumber] = useState(1);
+
+    const { inputValue, categoryId, setPizzaActiveIndex } = useContext(AppContext);
 
     const skeletonFakeArray = [...new Array(10)];
 
@@ -20,9 +22,9 @@ const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = inputValue ? `&search=${inputValue}` : '';
 
-    const LIMIT_PAGE = 4;
+    const LIMIT_PIZZAS_ON_PAGE = 4;
 
-    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?page=${pageNumber}&limit=${LIMIT_PAGE}&${category}&sortBy=${sortBy}&order=${order}${search}`;
+    const URLPizzas = `https://66df19f5de4426916ee39224.mockapi.io/pizzas?page=${pageNumber}&limit=${LIMIT_PIZZAS_ON_PAGE}&${category}&sortBy=${sortBy}&order=${order}${search}`;
 
     useEffect(() => {
         setIsLoading(true);
@@ -33,7 +35,7 @@ const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
                 setPizzasList(pizzasArr);
                 setIsLoading(false);
             });
-    }, [sortItemIndex, categoryId, inputValue, pageNumber ,URLPizzas]);
+    }, [sortItemIndex, categoryId, inputValue, pageNumber, URLPizzas]);
 
     return (
         <>
@@ -65,7 +67,7 @@ const MainContent = ({ inputValue, categoryId, setPizzaActiveIndex }) => {
                         ))
                 }
             </div>
-            <PaginationBlock onChangePage={(number) => setPageNumber(number)}/>
+            <PaginationBlock onChangePage={(number) => setPageNumber(number)} />
         </>
     )
 };
