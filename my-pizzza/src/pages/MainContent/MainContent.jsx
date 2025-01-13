@@ -6,6 +6,7 @@ import Sort from '../../components/Sort';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import SkeletonPizzas from '../../components/PizzaBlock/SkeletonPizzas';
 import PaginationBlock from '../../components/Pagination/PaginationBlock';
+import PizzaNotFound from '../../components/PizzaNotFound/PizzaNotFound';
 
 const MainContent = () => {
     const [pizzasList, setPizzasList] = useState([]);
@@ -31,8 +32,7 @@ const MainContent = () => {
         fetch(URLPizzas)
             .then((res) => res.json())
             .then((pizzasArr) => {
-                console.log('hui', pizzasArr)
-                setPizzasList(pizzasArr);
+                setPizzasList(Array.isArray(pizzasArr) ? pizzasArr : []);
                 setIsLoading(false);
             });
     }, [sortItemIndex, categoryId, inputValue, pageNumber, URLPizzas]);
@@ -59,12 +59,17 @@ const MainContent = () => {
                             />
                         )
                         :
-                        pizzasList.map((pizzaObj) => (
-                            <PizzaBlock
-                                key={pizzaObj.id}
-                                {...pizzaObj}
-                            />
-                        ))
+                        (pizzasList.length > 0
+                            ?
+                            pizzasList.map((pizzaObj) => (
+                                <PizzaBlock
+                                    key={pizzaObj.id}
+                                    {...pizzaObj}
+                                />
+                            ))
+                            :
+                            <PizzaNotFound />
+                        )
                 }
             </div>
             <PaginationBlock onChangePage={(number) => setPageNumber(number)} />
