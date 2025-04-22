@@ -7,8 +7,8 @@ function Sort({ SortItemIndex, onClickSortItems }) {
         { name: 'рейтингу (ASC)', sortType: '-rating' },
         { name: 'цене (DESC)', sortType: 'price' },
         { name: 'цене (ASC)', sortType: '-price' },
-        { name: 'названию (DESC)', sortType: 'name' },
-        { name: 'названию (ASC)', sortType: '-name' },
+        { name: 'названию (DESC)', sortType: 'title' },
+        { name: 'названию (ASC)', sortType: '-title' },
     ];
 
     const [popUpOpen, setPopUpOpen] = useState(false);

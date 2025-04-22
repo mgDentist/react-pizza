@@ -1,3 +1,52 @@
+# Проект React Pizza с MongoDB
+
+## Настройка и запуск
+
+### Предварительные требования
+
+- Node.js
+- MongoDB (локально установленный или MongoDB Atlas)
+
+### Шаги для запуска
+
+1. Установите зависимости:
+
+```
+npm install
+```
+
+2. Настройте MongoDB:
+
+   - Установите MongoDB локально или используйте MongoDB Atlas
+   - Настройте подключение в файле `server/.env`
+
+3. Импортируйте начальные данные в MongoDB:
+
+```
+npm run seed
+```
+
+4. Запустите проект (одновременно клиент и сервер):
+
+```
+npm run dev
+```
+
+## Структура проекта
+
+- `/src` - React-приложение
+- `/server` - Серверная часть с MongoDB
+  - `/models` - Модели данных
+  - `/routes` - API маршруты
+
+## Особенности
+
+- Фронтенд на React с использованием контекста для состояния
+- Серверное API на Express
+- База данных MongoDB
+- Пагинация, сортировка и фильтрация на сервере
+- Поиск по названию пиццы
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
